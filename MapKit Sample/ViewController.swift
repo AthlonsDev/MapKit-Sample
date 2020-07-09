@@ -49,9 +49,10 @@ class ViewController:  UIViewController, MKMapViewDelegate, CLLocationManagerDel
         
         sourceCoordinate = locationManager.location?.coordinate
         
+        guard let coordinates = sourceCoordinate else {return}
 
-//        let viewRegion = MKCoordinateRegion.init(center: sourceCoordinate!, latitudinalMeters: 200, longitudinalMeters: 200)
-//        mapView.setRegion(viewRegion, animated: true)
+        let viewRegion = MKCoordinateRegion.init(center: coordinates, latitudinalMeters: 200, longitudinalMeters: 200)
+        mapView.setRegion(viewRegion, animated: true)
         
     }
     
