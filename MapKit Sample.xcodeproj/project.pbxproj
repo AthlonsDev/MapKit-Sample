@@ -15,6 +15,7 @@
 		967A175A24B70C32002CFF68 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 967A175824B70C32002CFF68 /* LaunchScreen.storyboard */; };
 		967A176524B70C32002CFF68 /* MapKit_SampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967A176424B70C32002CFF68 /* MapKit_SampleTests.swift */; };
 		967A177024B70C32002CFF68 /* MapKit_SampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967A176F24B70C32002CFF68 /* MapKit_SampleUITests.swift */; };
+		967A177E24B75ADF002CFF68 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967A177D24B75ADF002CFF68 /* View.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		967A176B24B70C32002CFF68 /* MapKit SampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MapKit SampleUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		967A176F24B70C32002CFF68 /* MapKit_SampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKit_SampleUITests.swift; sourceTree = "<group>"; };
 		967A177124B70C32002CFF68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		967A177D24B75ADF002CFF68 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				967A174D24B70C31002CFF68 /* AppDelegate.swift */,
 				967A174F24B70C31002CFF68 /* SceneDelegate.swift */,
 				967A175124B70C31002CFF68 /* ViewController.swift */,
+				967A177D24B75ADF002CFF68 /* View.swift */,
 				967A175324B70C31002CFF68 /* Main.storyboard */,
 				967A175624B70C32002CFF68 /* Assets.xcassets */,
 				967A175824B70C32002CFF68 /* LaunchScreen.storyboard */,
@@ -259,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				967A177E24B75ADF002CFF68 /* View.swift in Sources */,
 				967A175224B70C31002CFF68 /* ViewController.swift in Sources */,
 				967A174E24B70C31002CFF68 /* AppDelegate.swift in Sources */,
 				967A175024B70C31002CFF68 /* SceneDelegate.swift in Sources */,

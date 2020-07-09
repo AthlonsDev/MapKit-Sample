@@ -18,13 +18,21 @@ class ViewController:  UIViewController, MKMapViewDelegate, CLLocationManagerDel
     var currentLocation:CLLocation?
     var sourceCoordinate: CLLocationCoordinate2D?
     var selectedCoord = CLLocationCoordinate2D()
-    
+    let items = ["Walking", "Driving"]
+    var transportType: String = "Walking"
+
     lazy var mapView: MKMapView = {
         var mv = MKMapView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
         mv.delegate = self
         
         return mv
     }()
+    
+    lazy var myView: View = {
+        let pv = View()
+        pv.vc = self
+        return pv
+       }()
     
     
     
@@ -63,12 +71,34 @@ class ViewController:  UIViewController, MKMapViewDelegate, CLLocationManagerDel
 
         view.addSubview(mapView)
 
-        
+        myView.addUI(view: view)
         addSearchBar()
         initLocation()
+        
+        
+//        configure SegmentedControl
+        myView.segmentView = UISegmentedControl(items: items)
+        myView.segmentView.addTarget(self, action: #selector(navigationSwitch), for: .valueChanged )
+
 
     }
 
+    @objc func navigationSwitch() {
+        switch myView.segmentView.selectedSegmentIndex {
+        case 0:
+
+            transportType = "Walking"
+            getDirections(toAnnotation: selectedCoord, transport: "Walking")
+            
+        case 1:
+            
+            transportType = "Driving"
+            getDirections(toAnnotation: selectedCoord, transport: "Driving")
+
+        default:
+            break
+        }
+    }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
@@ -92,17 +122,17 @@ class ViewController:  UIViewController, MKMapViewDelegate, CLLocationManagerDel
             
             //        Add Pin/Placemark
                 let annotation = MKPointAnnotation()
-                        annotation.coordinate = myCoordinates
+                    annotation.coordinate = myCoordinates
             //            annotation.title = self.myTitle
                 self.mapView.addAnnotation(annotation)
-            
-                getDirections(toAnnotation: myCoordinates)
+            self.selectedCoord = myCoordinates
+            self.getDirections(toAnnotation: myCoordinates, transport: self.transportType)
             }
         }
     
     }
     
-       func getDirections(toAnnotation: CLLocationCoordinate2D) {
+    func getDirections(toAnnotation: CLLocationCoordinate2D, transport: String) {
             //      Get Directions To Selecetd Place
             let request = MKDirections.Request()
             request.source = MKMapItem(placemark: MKPlacemark(coordinate: self.sourceCoordinate!))
@@ -110,16 +140,14 @@ class ViewController:  UIViewController, MKMapViewDelegate, CLLocationManagerDel
             request.requestsAlternateRoutes = true
      
             //            Show Selected Transport Type
-            if walking == true {
+            if transport == "Walking" {
                 request.transportType = .walking
-                
-            } else if driving == true {
+
+            } else if transport == "Driving" {
                 request.transportType = .automobile
                 
-            } else if publicTransport == true {
-                request.transportType = .transit
-                
             }
+
             
             let directions = MKDirections(request: request)
             directions.calculate { [unowned self] response, error in
@@ -145,13 +173,13 @@ class ViewController:  UIViewController, MKMapViewDelegate, CLLocationManagerDel
     //                let years = 12 / months
                     
                     if minutes > 0 && hours < 1 && days < 1 {
-                        return self.timeLbl.text = ("Time Expected: \(minutes) Minutes")
+                        return self.myView.timeLbl.text = ("Time Expected: \(minutes) Minutes")
                     }
                     if minutes > 0 && hours > 0 && days < 1 {
-                        return self.timeLbl.text = ("Time Expected: \(hours) Hours and \(minutes % 60) Minutes")
+                        return self.myView.timeLbl.text = ("Time Expected: \(hours) Hours and \(minutes % 60) Minutes")
                     }
                     if minutes > 0 && hours > 0 && days > 0 {
-                        return self.timeLbl.text = ("Time Expected: \(days) Days,  \(hours % 24) Hours and \(minutes % 60) Minutes")
+                        return self.myView.timeLbl.text = ("Time Expected: \(days) Days,  \(hours % 24) Hours and \(minutes % 60) Minutes")
                     }
                     
                 }
