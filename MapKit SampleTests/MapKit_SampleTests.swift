@@ -30,5 +30,13 @@ class MapKit_SampleTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    func testLocation() {
+        let vc = ViewController()
+        
+        print(vc.sourceCoordinate)
+        
+       
+    }
 
 }

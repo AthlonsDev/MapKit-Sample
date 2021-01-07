@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="D6Q-ge-kHb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
@@ -14,32 +14,66 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="wvZ-YN-02H">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            </mapView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ZBU-mr-sh1">
+                                <rect key="frame" x="73" y="76" width="266" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="bUE-UP-ksX"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
+                                <connections>
+                                    <action selector="navSwitch:" destination="BYZ-38-t0r" eventType="valueChanged" id="h5g-TY-zaP"/>
+                                </connections>
+                            </segmentedControl>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Oot-aU-VrO">
+                                <rect key="frame" x="33" y="799" width="347" height="54"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Expected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hEk-sF-ge8">
+                                        <rect key="frame" x="115.5" y="16.5" width="115" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="hEk-sF-ge8" firstAttribute="centerY" secondItem="Oot-aU-VrO" secondAttribute="centerY" id="gK2-c2-9J1"/>
+                                    <constraint firstItem="hEk-sF-ge8" firstAttribute="centerX" secondItem="Oot-aU-VrO" secondAttribute="centerX" id="ne9-kc-iYM"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="wvZ-YN-02H" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="GUG-O0-wXu"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZBU-mr-sh1" secondAttribute="trailing" constant="75" id="HXb-NP-zi5"/>
+                            <constraint firstItem="ZBU-mr-sh1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="32" id="IT3-P5-krI"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="wvZ-YN-02H" secondAttribute="bottom" id="Ntk-mZ-k6T"/>
+                            <constraint firstItem="wvZ-YN-02H" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="VXC-fM-gG5"/>
+                            <constraint firstItem="Oot-aU-VrO" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="799" id="YYF-O8-cfV"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Oot-aU-VrO" secondAttribute="bottom" constant="9" id="Zdj-iB-bJi"/>
+                            <constraint firstItem="ZBU-mr-sh1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="73" id="ZkV-iL-Adz"/>
+                            <constraint firstItem="Oot-aU-VrO" firstAttribute="centerX" secondItem="ZBU-mr-sh1" secondAttribute="centerX" id="akL-Hp-KSM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wvZ-YN-02H" secondAttribute="trailing" id="r8f-vf-gPr"/>
+                            <constraint firstItem="Oot-aU-VrO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="33" id="skX-ow-FnB"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="wP9-9P-BLu"/>
+                    <connections>
+                        <outlet property="mapView" destination="wvZ-YN-02H" id="Lbz-dZ-boQ"/>
+                        <outlet property="segmentedView" destination="ZBU-mr-sh1" id="aOr-B4-2pT"/>
+                        <outlet property="timeLbl" destination="hEk-sF-ge8" id="0rL-Uh-Hb3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1042.0289855072465" y="132.58928571428572"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="ch5-5N-s9C">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="D6Q-ge-kHb" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Dmu-CY-j0S">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="pcd-Ik-gKd"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sYA-Ff-e6N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="131.8840579710145" y="132.58928571428572"/>
+            <point key="canvasLocation" x="398.55072463768118" y="136.60714285714286"/>
         </scene>
     </scenes>
 </document>
